@@ -1,6 +1,4 @@
-import FirstForm from "./componets/FirstForm_Validation";
-import LeadList from "./componets/LeadList";
-import LeadDetails from "./componets/leadDetails";
+
 import Navigation from "./componets/Navigation";
 
 import { useEffect, useState } from "react";
@@ -10,16 +8,7 @@ import {
   deleteLead,
   updateLead,
 } from "./api/LeadApi";
-import {
-  Alert,
-  AppBar,
-  Grid,
-  IconButton,
-  Snackbar,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+
 
 let initialLead = {
   name: "",

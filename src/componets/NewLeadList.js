@@ -46,7 +46,7 @@ const NewLeadList = (props) => {
       <Grid container spacing={3}>
         {leadList.map((entry) => (
           <Grid item>
-            <Card variant='outlined'>
+            <Card variant="outlined">
               <CardHeader>{entry.name}</CardHeader>
               <CardContent>
                 {entry.leadid} {entry.name}
@@ -62,29 +62,27 @@ const NewLeadList = (props) => {
       <List>
         {leadList.map((entry) => {
           return (
-            <>
-              <ListItem key={entry.leadId}>
-                <Grid container spacing={3}>
-                  <Grid item md={3}>
-                    {entry.name}
-                  </Grid>
-                  <Grid item md={3}>
-                    {entry.leadId}
-                  </Grid>
-                  <Grid item md={6}>
-                    <Button
-                      variant="outlined"
-                      onClick={() => handleDeleteButton(entry)}>
-                      <DeleteOutlineIcon />
-                    </Button>
-                    &nbsp;
-                    <Button variant="outlined">
-                      <EditIcon />
-                    </Button>
-                  </Grid>
+            <ListItem key={entry.leadId}>
+              <Grid container spacing={3}>
+                <Grid item md={3}>
+                  {entry.name}
                 </Grid>
-              </ListItem>
-            </>
+                <Grid item md={3}>
+                  {entry.leadId}
+                </Grid>
+                <Grid item md={6}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => handleDeleteButton(entry)}
+                  >
+                    <DeleteOutlineIcon />
+                  </Button>
+                  <Button variant="outlined">
+                    <EditIcon />
+                  </Button>
+                </Grid>
+              </Grid>
+            </ListItem>
           );
         })}
       </List>

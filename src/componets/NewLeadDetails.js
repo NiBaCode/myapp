@@ -1,4 +1,4 @@
-import { Typography, Box} from '@mui/material';
+import { Typography} from '@mui/material';
 import React from 'react';
 
 // TODO catturare il parametro leadId dalla request
@@ -7,7 +7,7 @@ import React from 'react';
 const NewLeadDetails = () => {
             return(
                                               
-                                     <Typography component ="h1" variant="h1">
+                                     <Typography component ="h4" variant="h4">
                                    Questo è LeadDetails
                                     </Typography> 
                         

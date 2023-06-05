@@ -5,7 +5,7 @@ import { Box, Typography, Grid } from "@mui/material";
 const Dashboard = (props) => {
   return (
     <Box>
-     <Typography component ="h1" variant="h1">
+     <Typography component ="h4" variant="h4">
                                    Questa è la Dashboard
                                     </Typography> 
     </Box>
