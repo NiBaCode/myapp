@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogContent,
   CardHeader,
+  CardActions
 } from "@mui/material";
 import { deleteLead, findAll } from "../api/LeadApi";
 
@@ -31,9 +32,20 @@ const NewLeadList = (props) => {
     loadInitaliList();
   }, []);
 
+  useEffect(() => {
+    loadInitaliList();
+    console.log("PROPS:", props);
+  }, [props]);
+  const loadInitialList = () => {
+    findAll((result) => {
+      setLeadList(result);
+    })
+  }
+
   const handleDeleteConfirm = (id) => {
     deleteLead({ leadId: id }).then((result) => {
       loadInitaliList();
+      setShowDialog(false);
     });
   };
   const handleDeleteButton = (lead) => {
@@ -42,15 +54,29 @@ const NewLeadList = (props) => {
   };
 
   const showCards = () => {
+    
     return (
       <Grid container spacing={3}>
         {leadList.map((entry) => (
           <Grid item>
             <Card variant="outlined">
-              <CardHeader>{entry.name}</CardHeader>
+              <CardHeader title={entry.name  + "(" + entry.leadId + ")"}></CardHeader>
               <CardContent>
-                {entry.leadid} {entry.name}
+                <Grid container>
+                  <Grid item md={12}>
+                    {entry.type}
+                     
+                  </Grid>
+                 
+                  <Grid item md={12} align="end">
+                    {entry.ownerName}
+                  </Grid>
+                </Grid>
+                
               </CardContent>
+              <CardActions>
+               <Button onClick={handleDeleteButton}>Elimina</Button> 
+              </CardActions>
             </Card>
           </Grid>
         ))}
