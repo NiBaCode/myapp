@@ -1,4 +1,4 @@
-#React js Course at JDK academy
+# React js Course at JDK academy
 
 # Getting Started with Create React App
 
