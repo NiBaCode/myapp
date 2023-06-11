@@ -1,72 +1,99 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid, TextField, Button } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import { updateLead } from "../api/LeadApi";
 
-let initialLead = {
+const initialLead = {
   name: "",
   ownerName: "",
   type: "",
   leadId: 0,
   groupId: 0,
 };
-const NewLeadForm = (props) => {
 
+const NewLeadForm = (props) => {
   const [lead, setLead] = useState(initialLead);
 
-  useEffect(() => {
-            console.log("dentro al lead", lead);
+  const handleSave = () => {
+    updateLead(lead).then((res) => {
+        props.setStatusUpdate((prev)=>!prev)
+    });
+  };
 
-  }, [lead]);
-
-const handleSave = () => {
-            updateLead(lead).then((result) => {
-                        props.setStatusUpdate(true);
-
-            });
-};
   return (
-    <Grid container spacing={3}>
-            <Grid item xs={12}>
-      <Typography variant="h5" align="center">Inserimento del nuovo lead</Typography></Grid>
-      <Grid item xs={12}>
-        <TextField
-          fullWidth
-          id="name"
-          label="Nome"
-          variant="outlined"
-          name="name"
-          value={lead.name}
-          onChange={(e) => setLead({ ...lead, [e.target.value] : e.target.value })}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          fullWidth
-          id="ownerName"
-          label="Responsabile"
-          variant="outlined"
-          name="ownerName"
-          value={lead.ownerName}
-          onChange={(e) => setLead({ ...lead, [e.target.value] : e.target.value })}
+    <Box
+      sx={{
+        padding: "20px",
+      }}
+    >
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Typography variant="h4" component="h4" align="center">
+            Inserimento nuovo Lead
+          </Typography>
+        </Grid>
+        <Grid item md={12} sm={4} xs={12}>
+          <TextField
+            id="name"
+            label="Nome"
+            variant="outlined"
+            name="name"
+            onChange={(event) =>
+              setLead({ ...lead, [event.target.name]: event.target.value })
+            }
+            fullWidth
+            value={lead?.name}
           />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          fullWidth
-          id="type"
-          label="Tipo"
-          variant="outlined"
-          name="type"
-          value={lead.type}
-          onChange={(e) => setLead({ ...lead, [e.target.value] : e.target.value })}
+        </Grid>
+        <Grid item md={12} sm={4} xs={12}>
+          <TextField
+            id="ownerName"
+            label="Responsabile"
+            variant="outlined"
+            name="ownerName"
+            onChange={(event) =>
+              setLead({ ...lead, [event.target.name]: event.target.value })
+            }
+            fullWidth
+            value={lead?.ownerName}
           />
-      </Grid>
-      <Grid item xs={12}>
-        <Button onClick={() => handleSave()}>
+        </Grid>
+        <Grid item md={12} sm={4} xs={12}>
+          <TextField
+            id="type"
+            label="Tipo"
+            variant="outlined"
+            name="type"
+            onChange={(event) =>
+              setLead({ ...lead, [event.target.name]: event.target.value })
+            }
+            fullWidth
+            value={lead?.type}
+          />
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Button
+            variant="outlined"
+            onClick={(event) => {
+              // handleResetClick();
+            }}
+            fullWidth
+          >
+            Reset
+          </Button>
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Button
+            variant="contained"
+            onClick={(event) => {
+              handleSave();
+            }}
+            fullWidth
+          >
             Salva
-        </Button>
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
